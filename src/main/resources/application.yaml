@@ -1,9 +1,17 @@
 spring:
   application:
     name: trade-service
+  main:
+    banner-mode: off
+    log-startup: false
+    lazy-initialization: true
 
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:local}
+
+  devtools:
+    restart:
+      enabled: false
 
   # =========================
   # DATASOURCE
@@ -12,12 +20,12 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-    driver-class-name: org.postgresql.Driver
 
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
       connection-timeout: 30000
+      initialization-fail-timeout: 0
 
   jpa:
     open-in-view: false
@@ -32,6 +40,8 @@ spring:
   # =========================
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    listener:
+      auto-startup: false
     consumer:
       group-id: trade-service
       auto-offset-reset: earliest
@@ -66,7 +76,7 @@ spring:
 # SERVER
 # =========================
 server:
-  port: 8080
+  port: ${SERVICE_PORT}
 
 # =========================
 # ACTUATOR
@@ -76,3 +86,11 @@ management:
     web:
       exposure:
         include: health,info
+
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN
+    org.hibernate: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
