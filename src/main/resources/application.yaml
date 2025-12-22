@@ -3,7 +3,7 @@ spring:
     name: trade-service
   main:
     banner-mode: off
-    log-startup: false
+    log-startup: true
     lazy-initialization: true
 
   profiles:
@@ -25,7 +25,6 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 2
       connection-timeout: 30000
-      initialization-fail-timeout: 0
 
   jpa:
     open-in-view: false
@@ -89,8 +88,8 @@ management:
 
 logging:
   level:
-    root: WARN
-    org.springframework: WARN
-    org.hibernate: WARN
+    root: INFO
+    org.springframework: INFO
+    org.hibernate: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
