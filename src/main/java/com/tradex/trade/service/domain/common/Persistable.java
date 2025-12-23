@@ -25,4 +25,5 @@ public abstract class Persistable {
 
     @Column(name="updated_at")
     private String updatedAt;
+
 }
