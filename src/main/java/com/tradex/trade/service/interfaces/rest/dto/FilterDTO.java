@@ -1,4 +1,4 @@
-package com.tradex.trade.service.api.dto;
+package com.tradex.trade.service.interfaces.rest.dto;
 
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.validation.annotation.Validated;
 
 @Getter
 @Setter

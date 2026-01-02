@@ -2,6 +2,9 @@ package com.tradex.trade.service.common.exception;
 
 import com.tradex.trade.service.domain.common.ErrorCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplicationException extends RuntimeException {
 
     private final ErrorCode errorCode;

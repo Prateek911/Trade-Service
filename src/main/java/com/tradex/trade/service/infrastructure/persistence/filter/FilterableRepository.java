@@ -1,6 +1,8 @@
 package com.tradex.trade.service.infrastructure.persistence.filter;
 
-import com.tradex.trade.service.api.dto.FilterDTO;
+import com.tradex.trade.service.interfaces.rest.dto.FilterDTO;
+import com.tradex.trade.service.common.exception.PersistanceFailureException;
+import com.tradex.trade.service.common.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.common.Persistable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
 
@@ -19,6 +22,7 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Slf4j
 @AllArgsConstructor
+@NoRepositoryBean
 public abstract class FilterableRepository<E extends Persistable, F extends FilterDTO> implements JpaRepository<E, Long> {
 
     private final EntityManager em;
@@ -27,13 +31,13 @@ public abstract class FilterableRepository<E extends Persistable, F extends Filt
 
     public E persist(@Valid @NotNull E entity) {
         return findById(save(entity).getId()).orElseThrow(
-                ()->new RuntimeException("Something went wrong while persisting entity")
+                ()->new PersistanceFailureException(entityType, entity.getClass().getSimpleName())
         );
     }
 
     public  E getById(@NotNull Long id) {
         return findById(id).orElseThrow(
-                () -> new RuntimeException("Entity not found with id: " + id)
+                () ->new RecordNotFoundException(entityType, id)
         );
     }
 
