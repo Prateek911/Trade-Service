@@ -1,7 +1,7 @@
 package com.tradex.trade.service.domain.entity;
 
-import com.tradex.trade.service.domain.common.Persistable;
-import com.tradex.trade.service.domain.common.Status;
+import com.tradex.trade.service.domain.common.supers.Persistable;
+import com.tradex.trade.service.domain.common.enums.Status;
 import com.tradex.trade.service.domain.model.AllocationLeg;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;

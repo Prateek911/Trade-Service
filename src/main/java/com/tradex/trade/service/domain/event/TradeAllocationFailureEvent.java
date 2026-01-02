@@ -1,6 +1,6 @@
 package com.tradex.trade.service.domain.event;
 
-import com.tradex.trade.service.domain.common.FailureCategory;
+import com.tradex.trade.service.domain.common.enums.FailureCategory;
 
 public final class TradeAllocationFailureEvent extends BaseDomainEvent {
 

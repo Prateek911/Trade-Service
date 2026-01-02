@@ -1,6 +1,6 @@
 package com.tradex.trade.service.domain.entity;
 
-import com.tradex.trade.service.domain.common.Persistable;
+import com.tradex.trade.service.domain.common.supers.Persistable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

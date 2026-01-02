@@ -1,4 +1,6 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.enums;
+
+import com.tradex.trade.service.domain.common.interfaces.Enumerable;
 
 public enum TradeSide implements Enumerable {
 

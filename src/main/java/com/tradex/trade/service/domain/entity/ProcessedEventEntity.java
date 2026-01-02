@@ -1,6 +1,6 @@
 package com.tradex.trade.service.domain.entity;
 
-import com.tradex.trade.service.domain.common.Persistable;
+import com.tradex.trade.service.domain.common.supers.Persistable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
