@@ -1,4 +1,4 @@
-package com.tradex.trade.service.api.dto;
+package com.tradex.trade.service.interfaces.rest.dto;
 
 //RFC-7807 compliant
 

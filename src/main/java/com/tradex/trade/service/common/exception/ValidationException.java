@@ -1,6 +1,6 @@
 package com.tradex.trade.service.common.exception;
 
-import com.tradex.trade.service.api.dto.SubErrorDTO;
+import com.tradex.trade.service.interfaces.rest.dto.SubErrorDTO;
 import com.tradex.trade.service.domain.common.ErrorCode;
 
 import java.util.List;

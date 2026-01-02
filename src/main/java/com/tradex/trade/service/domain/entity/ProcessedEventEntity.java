@@ -31,6 +31,4 @@ public class ProcessedEventEntity extends Persistable {
     @Column(name = "processed_at", nullable = false)
     private Instant processedAt = Instant.now();
 
-
-
 }

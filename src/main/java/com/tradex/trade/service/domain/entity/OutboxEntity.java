@@ -1,0 +1,76 @@
+package com.tradex.trade.service.domain.entity;
+
+import com.tradex.trade.service.domain.common.OutboxStatus;
+import com.tradex.trade.service.domain.common.Persistable;
+import com.tradex.trade.service.infrastructure.messaging.kafka.EventEnvelope;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Type;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import java.time.Instant;
+
+@EnableJpaAuditing
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@Entity
+@Table(name = "outbox",
+indexes = {
+        @Index(name = "idx_outbox_status_created_at", columnList = "status, created_at"),
+        @Index(name = "idx_outbox_status_published_at", columnList = "status, published_at")
+})
+public class OutboxEntity extends Persistable {
+
+    @Column(name = "event_id", nullable = false, updatable = false)
+    private String eventId;
+
+    @Column(name = "aggregate_id", nullable = false, updatable = false)
+    private String aggregateId;
+
+    @Column(name = "event_type", nullable = false, updatable = false)
+    private String eventType;
+
+    @Column(name = "event_version", nullable = false, updatable = false)
+    private int eventVersion;
+
+    @Column(name = "topic", nullable = false, updatable = false)
+    private String topic;
+
+    @Type(JsonType.class)
+    @Column(name = "payload", columnDefinition = "jsonb", nullable = false, updatable = false)
+    private EventEnvelope<?> payload;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private OutboxStatus status = OutboxStatus.NEW;
+
+    @Column(name = "published_at")
+    private Instant publishedAt;
+
+    public static OutboxEntity fromEnvelope(
+            EventEnvelope<?> envelope,
+            String topic
+    ) {
+        OutboxEntity entity = new OutboxEntity();
+        entity.eventId = envelope.eventId();
+        entity.aggregateId = envelope.aggregateId();
+        entity.eventType = envelope.eventType();
+        entity.eventVersion = envelope.eventVersion();
+        entity.topic = topic;
+        entity.payload = envelope;
+        return entity;
+    }
+
+    public void markPublished() {
+        this.status = OutboxStatus.PUBLISHED;
+        this.publishedAt = Instant.now();
+    }
+}

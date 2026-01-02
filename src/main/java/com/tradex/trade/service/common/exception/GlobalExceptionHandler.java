@@ -1,12 +1,13 @@
 package com.tradex.trade.service.common.exception;
 
-import com.tradex.trade.service.api.dto.ProblemDetailsDTO;
-import com.tradex.trade.service.api.dto.SubErrorDTO;
+import com.tradex.trade.service.interfaces.rest.dto.ProblemDetailsDTO;
+import com.tradex.trade.service.interfaces.rest.dto.SubErrorDTO;
 import com.tradex.trade.service.infrastructure.web.CorrelationIdFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -40,6 +41,57 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND,
                 request,
                 null
+        );
+    }
+
+    @ExceptionHandler(RecordNotFoundException.class)
+    public ResponseEntity<ProblemDetailsDTO> handleResourceAlreadyExists(
+            RecordNotFoundException ex,
+            HttpServletRequest request) {
+
+        return buildProblem(
+                ex,
+                HttpStatus.UNPROCESSABLE_CONTENT,
+                request,
+                null
+        );
+    }
+
+    @ExceptionHandler(PersistanceFailureException.class)
+    public ResponseEntity<ProblemDetailsDTO> handlePersistanceFailure(
+            RecordNotFoundException ex,
+            HttpServletRequest request) {
+
+        return buildProblem(
+                ex,
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                request,
+                null
+        );
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ProblemDetailsDTO> handleSpringValidation(
+            MethodArgumentNotValidException ex,
+            HttpServletRequest request) {
+
+        List<SubErrorDTO> subErrors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(err -> new SubErrorDTO(
+                        err.getField(),
+                        err.getRejectedValue(),
+                        err.getDefaultMessage()))
+                .toList();
+
+        ValidationException wrapped =
+                new ValidationException("Validation failed", subErrors);
+
+        return buildProblem(
+                wrapped,
+                HttpStatus.BAD_REQUEST,
+                request,
+                subErrors
         );
     }
 
