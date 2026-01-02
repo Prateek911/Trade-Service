@@ -1,6 +1,8 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.enums;
 
-public enum OutboxStatus implements Enumerable{
+import com.tradex.trade.service.domain.common.interfaces.Enumerable;
+
+public enum OutboxStatus implements Enumerable {
 
     NEW("New"),
     PUBLISHED("Published");

@@ -1,6 +1,8 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.enums;
 
-public enum FailureCategory implements Enumerable{
+import com.tradex.trade.service.domain.common.interfaces.Enumerable;
+
+public enum FailureCategory implements Enumerable {
 
     VALIDATION("Validation"),
     TECHNICAL("Technical"),

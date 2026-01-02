@@ -1,6 +1,6 @@
 package com.tradex.trade.service.common.exception;
 
-import com.tradex.trade.service.domain.common.ErrorCode;
+import com.tradex.trade.service.domain.common.enums.ErrorCode;
 
 import java.util.concurrent.ThreadLocalRandom;
 

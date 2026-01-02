@@ -1,4 +1,4 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.supers;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

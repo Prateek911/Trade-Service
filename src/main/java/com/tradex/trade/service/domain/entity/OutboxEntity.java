@@ -1,7 +1,8 @@
 package com.tradex.trade.service.domain.entity;
 
-import com.tradex.trade.service.domain.common.OutboxStatus;
-import com.tradex.trade.service.domain.common.Persistable;
+import com.tradex.trade.service.domain.common.enums.OutboxStatus;
+import com.tradex.trade.service.domain.common.interfaces.AggregateRoot;
+import com.tradex.trade.service.domain.common.supers.Persistable;
 import com.tradex.trade.service.infrastructure.messaging.kafka.EventEnvelope;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
@@ -27,7 +28,7 @@ indexes = {
         @Index(name = "idx_outbox_status_created_at", columnList = "status, created_at"),
         @Index(name = "idx_outbox_status_published_at", columnList = "status, published_at")
 })
-public class OutboxEntity extends Persistable {
+public class OutboxEntity extends Persistable implements AggregateRoot<Long> {
 
     @Column(name = "event_id", nullable = false, updatable = false)
     private String eventId;
@@ -59,14 +60,15 @@ public class OutboxEntity extends Persistable {
             EventEnvelope<?> envelope,
             String topic
     ) {
-        OutboxEntity entity = new OutboxEntity();
-        entity.eventId = envelope.eventId();
-        entity.aggregateId = envelope.aggregateId();
-        entity.eventType = envelope.eventType();
-        entity.eventVersion = envelope.eventVersion();
-        entity.topic = topic;
-        entity.payload = envelope;
-        return entity;
+        return OutboxEntity.builder()
+                .eventId(envelope.eventId())
+                .aggregateId(envelope.aggregateId())
+                .eventType(envelope.eventType())
+                .eventVersion(envelope.eventVersion())
+                .topic(topic)
+                .payload(envelope)
+                .status(OutboxStatus.NEW)
+                .build();
     }
 
     public void markPublished() {

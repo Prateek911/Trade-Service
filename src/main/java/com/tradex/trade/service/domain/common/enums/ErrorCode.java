@@ -1,6 +1,8 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.enums;
 
-public enum ErrorCode implements Enumerable{
+import com.tradex.trade.service.domain.common.interfaces.Enumerable;
+
+public enum ErrorCode implements Enumerable {
 
     ERR_404_001("Record Not Found"),
     ERR_409_001("Record Already Exists"),

@@ -1,4 +1,4 @@
-package com.tradex.trade.service.domain.common;
+package com.tradex.trade.service.domain.common.interfaces;
 
 public interface Enumerable {
 
