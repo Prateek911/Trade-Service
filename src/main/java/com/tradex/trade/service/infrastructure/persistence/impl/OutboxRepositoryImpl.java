@@ -1,8 +1,11 @@
 package com.tradex.trade.service.infrastructure.persistence.impl;
 
+import com.tradex.trade.service.domain.common.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.entity.OutboxEntity;
+import com.tradex.trade.service.domain.model.Outbox;
 import com.tradex.trade.service.domain.repository.OutboxRepository;
-import com.tradex.trade.service.infrastructure.persistence.jpa.jpaOutboxRepository;
+import com.tradex.trade.service.infrastructure.mapper.OutboxMapper;
+import com.tradex.trade.service.infrastructure.persistence.jpa.JpaOutboxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -15,16 +18,17 @@ import java.util.Optional;
 public class OutboxRepositoryImpl implements OutboxRepository {
 
 
-    private final jpaOutboxRepository repository;
+    private final JpaOutboxRepository repository;
+    private final OutboxMapper mapper;
 
     @Override
-    public Optional<OutboxEntity> findById(Long id) {
-        return repository.findById(id);
+    public Outbox findById(Long id) {
+        return mapper.toModel(repository.findById(id).orElseThrow(()->new RecordNotFoundException(OutboxEntity.class, id)));
     }
 
     @Override
-    public OutboxEntity save(OutboxEntity entity) {
-        return repository.save(entity);
+    public Outbox save(Outbox model) {
+        return mapper.toModel(repository.save(mapper.toEntity(model)));
     }
 
     @Override
@@ -33,7 +37,7 @@ public class OutboxRepositoryImpl implements OutboxRepository {
     }
 
     @Override
-    public List<OutboxEntity> findNextBatchForUpdate(Pageable pageable) {
-        return repository.findNextBatchForUpdate(pageable);
+    public List<Outbox> findNextBatchForUpdate(Pageable pageable) {
+        return mapper.toModels(repository.findNextBatchForUpdate(pageable));
     }
 }

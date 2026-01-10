@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
@@ -20,10 +23,12 @@ public abstract class Persistable {
     @GeneratedValue
     private Long id;
 
+    @CreationTimestamp
     @Column(name="created_at", nullable=false, updatable=false)
-    private String createdAt;
+    private LocalDateTime createdAt;
 
+    @CreationTimestamp
     @Column(name="updated_at")
-    private String updatedAt;
+    private LocalDateTime updatedAt;
 
 }

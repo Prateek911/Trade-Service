@@ -3,11 +3,11 @@ package com.tradex.trade.service.domain.entity;
 import com.tradex.trade.service.domain.common.supers.Persistable;
 import com.tradex.trade.service.domain.common.enums.Status;
 import com.tradex.trade.service.domain.model.AllocationLeg;
-import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.Instant;
@@ -47,7 +47,7 @@ public class TradeAllocationEntity extends Persistable {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "allocation_result", columnDefinition = "jsonb")
     private List<AllocationLeg> allocationResult;
 
