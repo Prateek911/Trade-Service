@@ -2,11 +2,11 @@ package com.tradex.trade.service.domain.entity;
 
 import com.tradex.trade.service.domain.common.supers.Persistable;
 import com.tradex.trade.service.domain.common.enums.TradeSide;
-import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -64,7 +64,7 @@ public class StandardTradeEntity extends Persistable {
     private String sourceSystem;
 
     @NotNull
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "raw_event_payload", columnDefinition = "jsonb", nullable = false)
     private Map<String, Object> eventPayload;
 }

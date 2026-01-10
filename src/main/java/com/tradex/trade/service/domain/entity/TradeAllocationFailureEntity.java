@@ -1,6 +1,7 @@
 package com.tradex.trade.service.domain.entity;
 
 import com.tradex.trade.service.domain.common.enums.FailureCategory;
+import com.tradex.trade.service.domain.common.interfaces.AggregateRoot;
 import com.tradex.trade.service.domain.common.supers.Persistable;
 import jakarta.persistence.*;
 import lombok.*;

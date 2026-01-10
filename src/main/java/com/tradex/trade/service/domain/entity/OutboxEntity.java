@@ -1,17 +1,17 @@
 package com.tradex.trade.service.domain.entity;
 
 import com.tradex.trade.service.domain.common.enums.OutboxStatus;
-import com.tradex.trade.service.domain.common.interfaces.AggregateRoot;
 import com.tradex.trade.service.domain.common.supers.Persistable;
 import com.tradex.trade.service.infrastructure.messaging.kafka.EventEnvelope;
-import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.Instant;
@@ -28,7 +28,7 @@ indexes = {
         @Index(name = "idx_outbox_status_created_at", columnList = "status, created_at"),
         @Index(name = "idx_outbox_status_published_at", columnList = "status, published_at")
 })
-public class OutboxEntity extends Persistable implements AggregateRoot<Long> {
+public class OutboxEntity extends Persistable {
 
     @Column(name = "event_id", nullable = false, updatable = false)
     private String eventId;
@@ -45,7 +45,7 @@ public class OutboxEntity extends Persistable implements AggregateRoot<Long> {
     @Column(name = "topic", nullable = false, updatable = false)
     private String topic;
 
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "payload", columnDefinition = "jsonb", nullable = false, updatable = false)
     private EventEnvelope<?> payload;
 

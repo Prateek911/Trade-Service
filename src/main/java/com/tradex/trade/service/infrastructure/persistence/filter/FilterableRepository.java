@@ -1,8 +1,8 @@
 package com.tradex.trade.service.infrastructure.persistence.filter;
 
-import com.tradex.trade.service.interfaces.rest.dto.FilterDTO;
-import com.tradex.trade.service.common.exception.PersistanceFailureException;
-import com.tradex.trade.service.common.exception.RecordNotFoundException;
+import com.tradex.trade.service.infrastructure.dto.FilterDTO;
+import com.tradex.trade.service.domain.common.exception.PersistanceFailureException;
+import com.tradex.trade.service.domain.common.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.common.supers.Persistable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
