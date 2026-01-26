@@ -21,9 +21,9 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
         return mapper.toModel(repository.findById(id).orElseThrow(()-> new RecordNotFoundException(StandardTradeEntity.class,id)));
     }
 
-    @Override
-    public StandardTrade save(StandardTrade model) {
-        return mapper.toModel(repository.save(mapper.toEntity(model)));
+
+    public StandardTrade save(StandardTradeEntity entity) {
+        return mapper.toModel(repository.save(entity));
     }
 
     @Override

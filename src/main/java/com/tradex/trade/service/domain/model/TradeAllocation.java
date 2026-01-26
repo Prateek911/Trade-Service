@@ -16,6 +16,6 @@ public class TradeAllocation extends Entity implements AggregateRoot<Long> {
 
     private String tradeExecutionId;
     private Status status;
-    private List<AllocationLeg> allocationResult;
-    private Instant allocatedAt;
+    private String ruleCode;
+    private List<AllocationLeg> legs;
 }

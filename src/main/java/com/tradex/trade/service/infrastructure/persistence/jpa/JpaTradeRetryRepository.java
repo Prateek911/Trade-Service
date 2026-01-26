@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.time.Instant;
 import java.util.List;
 
-@Repository
+
 public interface JpaTradeRetryRepository extends CrudRepository<TradeAllocationRetryEntity, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)

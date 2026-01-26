@@ -6,7 +6,7 @@ public abstract class BaseDomainEvent implements IDomainEvent {
 
     private final Instant occurredAt;
 
-    protected BaseDomainEvent() {
+    protected BaseDomainEvent(Instant occurredAt) {
         this.occurredAt = Instant.now();
     }
 

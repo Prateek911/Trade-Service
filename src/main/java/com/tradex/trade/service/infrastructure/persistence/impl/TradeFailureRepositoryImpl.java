@@ -11,7 +11,6 @@ public class TradeFailureRepositoryImpl implements TradeFailureRepository {
         return null;
     }
 
-    @Override
     public TradeAllocationFailure save(TradeAllocationFailure aggregate) {
         return null;
     }

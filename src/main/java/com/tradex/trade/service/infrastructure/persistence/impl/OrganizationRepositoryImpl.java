@@ -1,5 +1,6 @@
 package com.tradex.trade.service.infrastructure.persistence.impl;
 
+import com.tradex.trade.service.domain.entity.OrganizationEntity;
 import com.tradex.trade.service.domain.model.Organization;
 import com.tradex.trade.service.domain.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +12,8 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
         return null;
     }
 
-    @Override
-    public Organization save(Organization aggregate) {
+
+    public Organization save(OrganizationEntity aggregate) {
         return null;
     }
 

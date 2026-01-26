@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper(componentModel = "spring",uses = DateMapper.class)
 public interface TradeRetryMapper {
 
-    TradeAllocationRetryEntity toEntity(TradeAllocationRetryEntity model);
+    TradeAllocationRetryEntity toEntity(TradeAllocationRetry model);
     TradeAllocationRetry toModel(TradeAllocationRetryEntity entity);
     List<TradeAllocationRetry> toModels(List<TradeAllocationRetryEntity> entities);
 }

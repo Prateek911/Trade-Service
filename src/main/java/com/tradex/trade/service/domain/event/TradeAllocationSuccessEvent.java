@@ -9,14 +9,14 @@ public final class TradeAllocationSuccessEvent extends BaseDomainEvent {
 
     private final String tradeExecutionId;
     private final List<AllocationLeg> allocations;
-    private final String ruleVersion;
+    private final String ruleCode;
 
     public TradeAllocationSuccessEvent(String tradeExecutionId, List<AllocationLeg> allocations,
-                                       String ruleVersion) {
-        super();
+                                       String ruleCode, Instant occurredAt) {
+        super(occurredAt);
         this.tradeExecutionId = tradeExecutionId;
         this.allocations = List.copyOf(allocations);
-        this.ruleVersion = ruleVersion;
+        this.ruleCode = ruleCode;
     }
 
     public String tradeExecutionId() {
@@ -27,8 +27,8 @@ public final class TradeAllocationSuccessEvent extends BaseDomainEvent {
         return allocations;
     }
 
-    public String ruleVersion() {
-        return ruleVersion;
+    public String ruleCode() {
+        return ruleCode;
     }
 
 }

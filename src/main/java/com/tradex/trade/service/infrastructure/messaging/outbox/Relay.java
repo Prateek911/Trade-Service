@@ -1,7 +1,9 @@
 package com.tradex.trade.service.infrastructure.messaging.outbox;
 
 import com.tradex.trade.service.domain.entity.OutboxEntity;
+import com.tradex.trade.service.domain.model.Outbox;
 import com.tradex.trade.service.domain.repository.OutboxRepository;
+import com.tradex.trade.service.infrastructure.mapper.OutboxMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

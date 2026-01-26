@@ -2,6 +2,8 @@ package com.tradex.trade.service.domain.event;
 
 import com.tradex.trade.service.domain.common.enums.FailureCategory;
 
+import java.time.Instant;
+
 public final class TradeAllocationFailureEvent extends BaseDomainEvent {
 
     private final String tradeExecutionId;
@@ -9,9 +11,10 @@ public final class TradeAllocationFailureEvent extends BaseDomainEvent {
     private final String failureCode;
     private final String failureMessage;
     private final boolean retryable;
+    private final Instant occurredAt;
 
     public TradeAllocationFailureEvent(String tradeExecutionId, FailureCategory failureCategory,
-                                       String failureCode, String failureMessage, boolean retryable)
+                                       String failureCode, String failureMessage, boolean retryable, Instant occurredAt)
     {
         super();
         this.tradeExecutionId = tradeExecutionId;
@@ -19,6 +22,7 @@ public final class TradeAllocationFailureEvent extends BaseDomainEvent {
         this.failureCode = failureCode;
         this.failureMessage = failureMessage;
         this.retryable = retryable;
+        this.occurredAt = occurredAt;
 
     }
 
@@ -41,4 +45,6 @@ public final class TradeAllocationFailureEvent extends BaseDomainEvent {
     public boolean retryable() {
         return retryable;
     }
+
+    public  Instant occurredAt() {return  occurredAt;}
 }

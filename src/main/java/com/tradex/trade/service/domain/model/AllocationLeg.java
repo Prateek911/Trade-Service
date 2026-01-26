@@ -5,11 +5,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
-@SuperBuilder
-@Data
-public class AllocationLeg {
-    String accountId;
-    BigDecimal quantity;
-    Long legalEntity;
-    Long book;
-}
+public record AllocationLeg(
+        String organizationId,
+        BigDecimal allocatedQuantity,
+        BigDecimal allocatedNotional,
+        String currency
+) {}

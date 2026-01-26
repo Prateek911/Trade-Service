@@ -1,5 +1,6 @@
 package com.tradex.trade.service.infrastructure.persistence.impl;
 
+import com.tradex.trade.service.domain.entity.ProcessedEventEntity;
 import com.tradex.trade.service.domain.model.ProcessedEvent;
 import com.tradex.trade.service.domain.repository.ProcessedEventRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +12,7 @@ public class ProcessedEventRepositoryImpl implements ProcessedEventRepository {
         return null;
     }
 
-    @Override
-    public ProcessedEvent save(ProcessedEvent aggregate) {
+    public ProcessedEvent save(ProcessedEventEntity entity) {
         return null;
     }
 

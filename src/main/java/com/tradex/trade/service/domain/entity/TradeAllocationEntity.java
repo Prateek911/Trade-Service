@@ -11,6 +11,7 @@ import org.hibernate.type.SqlTypes;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @EnableJpaAuditing
@@ -34,8 +35,8 @@ indexes = {
         columnList = "status"
 ),
         @Index(
-                name = "idx_trade_allocation_allocated_at",
-                columnList = "allocated_at"
+                name = "idx_trade_allocation_created_at",
+                columnList = "created_at"
         )
 })
 public class TradeAllocationEntity extends Persistable {
@@ -47,13 +48,19 @@ public class TradeAllocationEntity extends Persistable {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "allocation_result", columnDefinition = "jsonb")
-    private List<AllocationLeg> allocationResult;
+    @OneToMany(
+            mappedBy = "allocation",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<AllocationLegEntity> legs = new ArrayList<>();
 
-    @Column(name = "rule_version", nullable = false)
-    private String ruleVersion;
+    public void replaceLegs(List<AllocationLegEntity> newLegs) {
+        legs.clear();
+        legs.addAll(newLegs);
+    }
 
-    @Column(name = "allocated_at", nullable = false, updatable = false)
-    private Instant allocatedAt = Instant.now();
+    @Column(name = "rule_code", nullable = false)
+    private String ruleCode;
 }

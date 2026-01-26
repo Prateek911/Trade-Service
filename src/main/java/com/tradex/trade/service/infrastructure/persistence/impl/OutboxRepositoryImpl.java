@@ -27,17 +27,17 @@ public class OutboxRepositoryImpl implements OutboxRepository {
     }
 
     @Override
-    public Outbox save(Outbox model) {
-        return mapper.toModel(repository.save(mapper.toEntity(model)));
-    }
-
-    @Override
     public boolean existsById(Long id) {
         return repository.existsById(id);
     }
 
     @Override
-    public List<Outbox> findNextBatchForUpdate(Pageable pageable) {
-        return mapper.toModels(repository.findNextBatchForUpdate(pageable));
+    public List<OutboxEntity> findNextBatchForUpdate(Pageable pageable) {
+        return repository.findNextBatchForUpdate(pageable);
+    }
+
+    @Override
+    public Outbox save(OutboxEntity entity) {
+        return mapper.toModel(repository.save(entity));
     }
 }

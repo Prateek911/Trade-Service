@@ -5,12 +5,13 @@ import com.tradex.trade.service.domain.common.interfaces.Enumerable;
 public enum Status implements Enumerable {
 
     ALLOCATED("Allocated"),
-    PENDING("Pending"),
+    ALLOCATING("Allocating"),
+    RECEIVED("Received"),
     REJECTED("Rejected"),
     SETTLED("Settled"),
     CANCELLED("Cancelled"),
     FAILED("Failed"),
-    AWAITING_RETRY("Awaiting  Retry");
+    RETRY("Retry");
 
     private final String description;
 
