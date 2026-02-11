@@ -1,9 +1,9 @@
 package com.tradex.trade.service.infrastructure.persistence.filter;
 
-import com.tradex.trade.service.infrastructure.dto.FilterDTO;
-import com.tradex.trade.service.domain.common.exception.PersistanceFailureException;
-import com.tradex.trade.service.domain.common.exception.RecordNotFoundException;
-import com.tradex.trade.service.domain.common.supers.Persistable;
+import com.tradex.trade.service.infrastructure.persistence.dto.FilterDTO;
+import com.tradex.trade.service.shared.exception.PersistanceFailureException;
+import com.tradex.trade.service.domain.exception.RecordNotFoundException;
+import com.tradex.trade.service.infrastructure.persistence.Persistable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import jakarta.validation.Valid;
@@ -41,7 +41,7 @@ public abstract class FilterableRepository<E extends Persistable, F extends Filt
         );
     }
 
-    protected abstract List<Predicate> contraints(CriteriaBuilder cb, Root<E> root, F filter);
+    protected abstract List<Predicate> constraints(CriteriaBuilder cb, Root<E> root, F filter);
 
     protected abstract List<Order> orderList(CriteriaBuilder cb, Root<E> root, F filter);
 
@@ -51,7 +51,7 @@ public abstract class FilterableRepository<E extends Persistable, F extends Filt
         final var query = cb.createQuery(clazz);
         final var root = query.from(clazz);
 
-        final var conditions = contraints(cb, root, filter)
+        final var conditions = constraints(cb, root, filter)
                 .toArray(Predicate[]::new);
         query.select(root).where(conditions);
 

@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.ProcessedEventEntity;
-import com.tradex.trade.service.domain.model.ProcessedEvent;
+import com.tradex.trade.service.infrastructure.persistence.processed.ProcessedEventEntity;
+import com.tradex.trade.service.domain.event.ProcessedEvent;
 import org.mapstruct.Mapper;
 
 import java.util.List;

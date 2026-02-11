@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.OrganizationEntity;
-import com.tradex.trade.service.domain.model.Organization;
+import com.tradex.trade.service.infrastructure.persistence.organization.OrganizationEntity;
+import com.tradex.trade.service.domain.organization.Organization;
 import org.mapstruct.Mapper;
 
 import java.util.List;
