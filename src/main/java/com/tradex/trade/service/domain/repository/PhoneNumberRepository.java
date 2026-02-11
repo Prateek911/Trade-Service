@@ -1,8 +1,7 @@
 package com.tradex.trade.service.domain.repository;
 
-import com.tradex.trade.service.domain.common.interfaces.IRepository;
-import com.tradex.trade.service.domain.entity.PhoneNumberEntity;
-import com.tradex.trade.service.domain.model.PhoneNumber;
+import com.tradex.trade.service.domain.common.repository.IRepository;
+import com.tradex.trade.service.domain.organization.PhoneNumber;
 
 public interface PhoneNumberRepository extends IRepository<PhoneNumber,Long> {
 }

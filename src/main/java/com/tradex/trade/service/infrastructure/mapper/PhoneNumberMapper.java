@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.PhoneNumberEntity;
-import com.tradex.trade.service.domain.model.PhoneNumber;
+import com.tradex.trade.service.infrastructure.persistence.organization.PhoneNumberEntity;
+import com.tradex.trade.service.domain.organization.PhoneNumber;
 import org.mapstruct.Mapper;
 
 import java.util.List;

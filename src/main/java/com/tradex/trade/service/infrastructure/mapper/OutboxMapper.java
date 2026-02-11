@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.OutboxEntity;
-import com.tradex.trade.service.domain.model.Outbox;
+import com.tradex.trade.service.infrastructure.persistence.outbox.OutboxEntity;
+import com.tradex.trade.service.domain.outbox.Outbox;
 import org.mapstruct.Mapper;
 
 import java.util.List;

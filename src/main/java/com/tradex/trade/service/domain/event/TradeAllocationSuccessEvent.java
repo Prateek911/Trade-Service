@@ -1,6 +1,6 @@
 package com.tradex.trade.service.domain.event;
 
-import com.tradex.trade.service.domain.model.AllocationLeg;
+import com.tradex.trade.service.domain.allocation.AllocationLeg;
 
 import java.time.Instant;
 import java.util.List;

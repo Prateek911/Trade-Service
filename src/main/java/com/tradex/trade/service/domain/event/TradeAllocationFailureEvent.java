@@ -11,18 +11,16 @@ public final class TradeAllocationFailureEvent extends BaseDomainEvent {
     private final String failureCode;
     private final String failureMessage;
     private final boolean retryable;
-    private final Instant occurredAt;
 
     public TradeAllocationFailureEvent(String tradeExecutionId, FailureCategory failureCategory,
                                        String failureCode, String failureMessage, boolean retryable, Instant occurredAt)
     {
-        super();
+        super(occurredAt);
         this.tradeExecutionId = tradeExecutionId;
         this.failureCategory = failureCategory;
         this.failureCode = failureCode;
         this.failureMessage = failureMessage;
         this.retryable = retryable;
-        this.occurredAt = occurredAt;
 
     }
 
@@ -45,6 +43,4 @@ public final class TradeAllocationFailureEvent extends BaseDomainEvent {
     public boolean retryable() {
         return retryable;
     }
-
-    public  Instant occurredAt() {return  occurredAt;}
 }

@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.StandardTradeEntity;
-import com.tradex.trade.service.domain.model.StandardTrade;
+import com.tradex.trade.service.infrastructure.persistence.trade.StandardTradeEntity;
+import com.tradex.trade.service.domain.trade.StandardTrade;
 import org.mapstruct.Mapper;
 
 import java.util.List;

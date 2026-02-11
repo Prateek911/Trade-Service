@@ -1,9 +1,7 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.TradeAllocationEntity;
-import com.tradex.trade.service.domain.entity.TradeAllocationFailureEntity;
-import com.tradex.trade.service.domain.model.TradeAllocation;
-import com.tradex.trade.service.domain.model.TradeAllocationFailure;
+import com.tradex.trade.service.infrastructure.persistence.allocation.TradeAllocationEntity;
+import com.tradex.trade.service.domain.allocation.TradeAllocation;
 import org.mapstruct.Mapper;
 
 import java.util.List;

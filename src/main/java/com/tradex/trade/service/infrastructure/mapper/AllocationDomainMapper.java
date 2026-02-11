@@ -1,9 +1,9 @@
 package com.tradex.trade.service.infrastructure.mapper;
 
-import com.tradex.trade.service.domain.entity.TradeAllocationEntity;
-import com.tradex.trade.service.domain.model.AllocationLeg;
-import com.tradex.trade.service.domain.model.AllocationResult;
-import com.tradex.trade.service.domain.state.TradeAllocationState;
+import com.tradex.trade.service.infrastructure.persistence.allocation.TradeAllocationEntity;
+import com.tradex.trade.service.domain.allocation.AllocationLeg;
+import com.tradex.trade.service.domain.allocation.AllocationResult;
+import com.tradex.trade.service.domain.allocation.TradeAllocationState;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
