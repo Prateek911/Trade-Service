@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "name": "AllocationFailed",
+  "namespace": "com.tradex.trade.service.events",
+  "fields": [
+    { "name": "tradeExecutionId", "type": "string" },
+    { "name": "failureCode", "type": "string" },
+    { "name": "failureMessage", "type": "string" },
+    { "name": "failureCategory", "type": "string"},
+    { "name": "retryable", "type": "boolean" },
+    { "name": "failedAt", "type": "string" }
+  ]
+}

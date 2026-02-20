@@ -5,6 +5,7 @@ import com.tradex.trade.service.infrastructure.persistence.trade.StandardTradeEn
 import com.tradex.trade.service.domain.repository.StandardTradeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,7 @@ public class AllocationScheduler {
     public void allocatePendingTrades() {
 
         List<StandardTradeEntity> trades =
-                standardTradeRepository.lockPendingTrades(BATCH_SIZE);
+                standardTradeRepository.lockPendingTrades(PageRequest.of(0, BATCH_SIZE));
 
         for (StandardTradeEntity trade : trades) {
                 trade.setStatus(Status.ALLOCATING);

@@ -28,6 +28,4 @@ public class Organization extends Entity implements AggregateRoot<Long> {
     private String regNumber;
     private String shortName;
     private String longName;
-
-    private record Kyc(String kycStatus, String countryCode){};
 }

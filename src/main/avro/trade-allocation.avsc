@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "TradeAllocated",
+  "namespace": "com.tradex.trade.service.events",
+  "fields": [
+    { "name": "tradeExecutionId", "type": "string" },
+    { "name": "status", "type": "string" },
+    { "name": "ruleCode", "type": "string" },
+    {
+      "name": "legs",
+      "type": {
+        "type": "array",
+        "items": "com.tradex.trade.service.events.AllocationLeg"
+      }
+    },
+    { "name": "eventVersion", "type": "int" },
+    { "name": "occurredAt", "type": "string" }
+  ]
+}

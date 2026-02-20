@@ -1,5 +1,6 @@
 package com.tradex.trade.service.infrastructure.persistence.allocation;
 
+import com.tradex.trade.service.domain.common.enums.Status;
 import com.tradex.trade.service.infrastructure.persistence.Persistable;
 import jakarta.persistence.*;
 import lombok.*;
@@ -54,4 +55,8 @@ public class TradeAllocationEntity extends Persistable {
 
     @Column(name = "rule_code", nullable = false)
     private String ruleCode;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 }

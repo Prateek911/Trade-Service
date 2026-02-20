@@ -26,7 +26,7 @@ public class TradeExecutionConsumer {
     @KafkaListener(
             topics = "${kafka.topics.trades-executed}",
             groupId = "${kafka.consumer.group-id}",
-            containerFactory = "kafkaListenerContainerFactory"
+            containerFactory = "tradeExecutedKafkaListenerContainerFactory"
     )
     public void consume(
             TradeExecutedEvent envelope
@@ -43,21 +43,6 @@ public class TradeExecutionConsumer {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
-    }
-
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object>
-    kafkaListenerContainerFactory(
-            ConsumerFactory<String, Object> consumerFactory
-    ) {
-        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-
-        factory.setConsumerFactory(consumerFactory);
-        factory.getContainerProperties()
-                .setAckMode(ContainerProperties.AckMode.RECORD);
-
-        return factory;
     }
 
 

@@ -1,7 +1,9 @@
-package com.tradex.trade.service.shared.exception;
+package com.tradex.trade.service.shared;
 
 import com.tradex.trade.service.infrastructure.web.ErrorCode;
+import lombok.Getter;
 
+@Getter
 public class ApplicationException extends RuntimeException {
 
     private final ErrorCode errorCode;
@@ -11,5 +13,4 @@ public class ApplicationException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
-    public ErrorCode getErrorCode() {return errorCode;}
 }

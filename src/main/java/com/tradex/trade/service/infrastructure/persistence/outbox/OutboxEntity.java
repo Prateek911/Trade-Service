@@ -2,15 +2,12 @@ package com.tradex.trade.service.infrastructure.persistence.outbox;
 
 import com.tradex.trade.service.application.outbox.OutboxStatus;
 import com.tradex.trade.service.infrastructure.persistence.Persistable;
-import com.tradex.trade.service.infrastructure.messaging.kafka.EventEnvelope;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.Instant;
@@ -44,9 +41,8 @@ public class OutboxEntity extends Persistable {
     @Column(name = "topic", nullable = false, updatable = false)
     private String topic;
 
-    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "payload", columnDefinition = "jsonb", nullable = false, updatable = false)
-    private EventEnvelope<?> payload;
+    private String payload;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -55,19 +51,20 @@ public class OutboxEntity extends Persistable {
     @Column(name = "published_at")
     private Instant publishedAt;
 
-    public static OutboxEntity fromEnvelope(
-            EventEnvelope<?> envelope,
-            String topic
+    public static OutboxEntity create(
+            String aggregateId,
+            String eventType,
+            int eventVersion,
+            String topic,
+            String payload
     ) {
-        return OutboxEntity.builder()
-                .eventId(envelope.eventId())
-                .aggregateId(envelope.aggregateId())
-                .eventType(envelope.eventType())
-                .eventVersion(envelope.eventVersion())
-                .topic(topic)
-                .payload(envelope)
-                .status(OutboxStatus.NEW)
-                .build();
+        OutboxEntity entity = new OutboxEntity();
+        entity.aggregateId = aggregateId;
+        entity.eventType = eventType;
+        entity.eventVersion = eventVersion;
+        entity.topic = topic;
+        entity.payload = payload;
+        return entity;
     }
 
     public void markPublished() {

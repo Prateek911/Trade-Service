@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "TradeAllocationSuccess",
+  "namespace": "com.tradex.trade.service.events",
+  "fields": [
+    { "name": "tradeExecutionId", "type": "string" },
+    { "name": "ruleCode", "type": "string" },
+    {
+      "name": "legs",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AllocationLeg",
+          "fields": [
+            { "name": "legalEntityId", "type": "string" },
+            { "name": "instrumentId", "type": "string" },
+            { "name": "allocatedQuantity", "type": "double" },
+            { "name": "allocatedNotional", "type": "double" }
+          ]
+        }
+      }
+    },
+    { "name": "eventVersion", "type": "int" },
+    { "name": "occurredAt", "type": "string" }
+  ]
+}

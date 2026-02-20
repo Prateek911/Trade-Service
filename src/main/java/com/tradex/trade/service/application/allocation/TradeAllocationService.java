@@ -50,7 +50,7 @@ public class TradeAllocationService {
                 tradeAllocationRepository
                         .findByTradeExecutionId(tradeExecutionId)
                         .map(domainMapper::toDomain)
-                        .orElseGet(() -> new TradeAllocationState(tradeExecutionId));;
+                        .orElseGet(() -> new TradeAllocationState(tradeExecutionId));
 
 
 
