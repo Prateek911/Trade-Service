@@ -31,12 +31,11 @@ public class AllocationQueryResolver {
 
         AllocationView first = rows.get(0);
 
-        return new TradeAllocation(
-                first.getTradeExecutionId(),
-                first.getStatus().name(),
-                first.getRuleCode(),
-                first.getRuleVersion(),
-                rows.stream()
+        return TradeAllocation.builder()
+                .tradeExecutionId(first.getTradeExecutionId())
+                .status(first.getStatus())
+                .ruleCode(first.getRuleCode())
+                .legs(rows.stream()
                         .map(r ->
                                 new AllocationLeg(
                                         r.getOrganizationId(),
@@ -46,6 +45,7 @@ public class AllocationQueryResolver {
                                 )
                         )
                         .toList()
-        );
+                )
+                .build();
     }
 }

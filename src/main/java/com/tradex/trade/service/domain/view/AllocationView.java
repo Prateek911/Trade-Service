@@ -9,7 +9,6 @@ public interface AllocationView {
     String getTradeExecutionId();
     Status getStatus();
     String getRuleCode();
-    String getRuleVersion();
     String getOrganizationId();
     BigDecimal getAllocatedQuantity();
     BigDecimal getAllocatedNotional();
