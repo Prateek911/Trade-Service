@@ -10,6 +10,7 @@ public enum Status implements Enumerable {
     SETTLED("Settled"),
     CANCELLED("Cancelled"),
     FAILED("Failed"),
+    ACTIVE("Active"),
     RETRY("Retry");
 
     private final String description;

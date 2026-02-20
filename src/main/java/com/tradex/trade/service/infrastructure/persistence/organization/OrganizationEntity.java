@@ -1,5 +1,6 @@
 package com.tradex.trade.service.infrastructure.persistence.organization;
 
+import com.tradex.trade.service.domain.common.enums.Status;
 import com.tradex.trade.service.infrastructure.persistence.Persistable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -42,7 +43,7 @@ public class OrganizationEntity extends Persistable {
     private String exchangeId;
 
     @Column(name = "status", nullable = false, length = 32)
-    private String status;
+    private Status status;
 
     @ElementCollection
     @CollectionTable(name = "legal_entity_kyc",

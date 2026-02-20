@@ -1,0 +1,20 @@
+package com.tradex.trade.service.application.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmailAddressDTO extends DTO{
+
+    private String email;
+
+    private String type;
+}
