@@ -1,7 +1,7 @@
 package com.tradex.trade.service.infrastructure.web;
 
-import com.tradex.trade.service.shared.exception.ApplicationException;
-import com.tradex.trade.service.shared.exception.PersistanceFailureException;
+import com.tradex.trade.service.shared.ApplicationException;
+import com.tradex.trade.service.shared.PersistanceFailureException;
 import com.tradex.trade.service.domain.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.exception.ValidationException;
 import jakarta.servlet.http.HttpServletRequest;

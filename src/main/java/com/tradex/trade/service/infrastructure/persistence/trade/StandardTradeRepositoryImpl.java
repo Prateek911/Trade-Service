@@ -5,6 +5,7 @@ import com.tradex.trade.service.domain.trade.StandardTrade;
 import com.tradex.trade.service.domain.repository.StandardTradeRepository;
 import com.tradex.trade.service.infrastructure.mapper.StandardTradeMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
     }
 
     @Override
-    public List<StandardTradeEntity> lockPendingTrades(int batchSize) {
-        return  repository.lockPendingTrades(batchSize);
+    public List<StandardTradeEntity> lockPendingTrades(Pageable pageable) {
+        return  repository.lockPendingTrades(pageable);
     }
 
 

@@ -18,8 +18,8 @@ public class ConsumedTradeMapper {
                 .quantity(event.quantity())
                 .price(event.price())
                 .currency(event.currency())
-                .fxRate(event.fxRate())
-                .fxTimestamp(event.fxTimestamp())
+               /* .fxRate(event.fxRate())
+                .fxTimestamp(event.fxTimestamp())*/
                 .sourceSystem(event.sourceSystem())
                 .tradeTimestamp(event.tradeTimestamp())
                 .build();

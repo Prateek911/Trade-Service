@@ -38,9 +38,6 @@ public class TradeAllocationRetryEntity extends Persistable {
     @Column(name = "last_failure_code", nullable = false)
     private String lastFailureCode;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant createdAt = Instant.now();
-
     public static TradeAllocationRetryEntity from(String tradeExecutionId, int maxRetries, Instant nextAttemptAt, String lastFailureCode) {
         return TradeAllocationRetryEntity.builder()
                 .tradeExecutionId(tradeExecutionId)

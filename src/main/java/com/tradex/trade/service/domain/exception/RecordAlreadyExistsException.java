@@ -1,7 +1,7 @@
 package com.tradex.trade.service.domain.exception;
 
 import com.tradex.trade.service.infrastructure.web.ErrorCode;
-import com.tradex.trade.service.shared.exception.ApplicationException;
+import com.tradex.trade.service.shared.ApplicationException;
 
 import java.util.concurrent.ThreadLocalRandom;
 

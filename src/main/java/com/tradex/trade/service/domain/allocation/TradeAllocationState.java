@@ -43,6 +43,14 @@ public class TradeAllocationState implements AggregateRoot<String> {
         return ruleCode;
     }
 
+    public String tradeExecutionId() {
+        return tradeExecutionId;
+    }
+
+    public AllocationResult allocationResult() {
+        return allocationResult;
+    }
+
 
     public List<IDomainEvent> pullDomainEvents() {
         List<IDomainEvent> events = List.copyOf(domainEvents);

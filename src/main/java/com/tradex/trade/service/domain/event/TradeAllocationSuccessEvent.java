@@ -1,23 +1,20 @@
 package com.tradex.trade.service.domain.event;
 
 import com.tradex.trade.service.domain.allocation.AllocationLeg;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.List;
 
+@Getter
+@AllArgsConstructor
 public final class TradeAllocationSuccessEvent extends BaseDomainEvent {
 
     private final String tradeExecutionId;
     private final List<AllocationLeg> allocations;
     private final String ruleCode;
-
-    public TradeAllocationSuccessEvent(String tradeExecutionId, List<AllocationLeg> allocations,
-                                       String ruleCode, Instant occurredAt) {
-        super(occurredAt);
-        this.tradeExecutionId = tradeExecutionId;
-        this.allocations = List.copyOf(allocations);
-        this.ruleCode = ruleCode;
-    }
+    private final Instant occurredAt;
 
     public String tradeExecutionId() {
         return tradeExecutionId;
@@ -31,4 +28,13 @@ public final class TradeAllocationSuccessEvent extends BaseDomainEvent {
         return ruleCode;
     }
 
+    @Override
+    public String getAggregateId() {
+        return tradeExecutionId;
+    }
+
+    @Override
+    public int getEventVersion() {
+        return 1;
+    }
 }

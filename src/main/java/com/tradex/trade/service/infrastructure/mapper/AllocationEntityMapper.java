@@ -12,7 +12,7 @@ public class AllocationEntityMapper {
 
     public TradeAllocationEntity toEntity(TradeAllocationState domain) {
         TradeAllocationEntity entity = new TradeAllocationEntity();
-        entity.setTradeExecutionId(domain.tradeExecutionId);
+        entity.setTradeExecutionId(domain.tradeExecutionId());
         entity.setStatus(domain.status());
         entity.setRuleCode(domain.ruleCode());
 
@@ -24,7 +24,7 @@ public class AllocationEntityMapper {
                             .map(leg ->
                                     new AllocationLegEntity(
                                             entity,
-                                            domain.getAggregateId(),
+                                            domain.tradeExecutionId(),
                                             leg.organizationId(),
                                             leg.allocatedQuantity(),
                                             leg.allocatedNotional(),

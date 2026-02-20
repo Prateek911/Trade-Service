@@ -3,26 +3,42 @@ package com.tradex.trade.service.infrastructure.mapper;
 import org.mapstruct.Mapper;
 
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
 
 @Mapper(componentModel = "spring")
 public interface DateMapper {
 
-    default Timestamp map(Instant value) {
+    ZoneId UTC = ZoneOffset.UTC;
+
+    default Timestamp instantToTimestamp(Instant value) {
         return value == null ? null : Timestamp.from(value);
     }
 
-    default Instant map(Timestamp value) {
+    default Instant timestampToInstant(Timestamp value) {
         return value == null ? null : value.toInstant();
     }
 
-    default Timestamp map(LocalDate value) {
-        return value == null ? null : Timestamp.valueOf(value.atStartOfDay());
+    default Instant localDateToInstant(LocalDate value) {
+        return value == null
+                ? null
+                : value.atStartOfDay(UTC).toInstant();
     }
 
-    default LocalDate mapToLocalDate(Timestamp value) {
-        return value == null ? null : value.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    default LocalDate instantToLocalDate(Instant value) {
+        return value == null
+                ? null
+                : value.atZone(UTC).toLocalDate();
+    }
+
+    default Instant localDateTimeToInstant(LocalDateTime value) {
+        return value == null
+                ? null
+                : value.toInstant(ZoneOffset.UTC);
+    }
+
+    default LocalDateTime instantToLocalDateTime(Instant value) {
+        return value == null
+                ? null
+                : LocalDateTime.ofInstant(value, UTC);
     }
 }

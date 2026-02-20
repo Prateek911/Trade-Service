@@ -1,9 +1,11 @@
-package com.tradex.trade.service.shared.exception;
+package com.tradex.trade.service.shared;
 
 import com.tradex.trade.service.infrastructure.web.ErrorCode;
+import lombok.Getter;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+@Getter
 public class PersistanceFailureException extends ApplicationException {
 
     private static final int RANDOM_MIN = 100000;
@@ -33,11 +35,4 @@ public class PersistanceFailureException extends ApplicationException {
         );
     }
 
-    public Class<?> getEntityType() {
-        return entityType;
-    }
-
-    public Object getIdentifier() {
-        return identifier;
-    }
 }

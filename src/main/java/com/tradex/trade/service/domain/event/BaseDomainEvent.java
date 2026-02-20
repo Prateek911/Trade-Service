@@ -6,12 +6,12 @@ public abstract class BaseDomainEvent implements IDomainEvent {
 
     private final Instant occurredAt;
 
-    protected BaseDomainEvent(Instant occurredAt) {
+    protected BaseDomainEvent() {
         this.occurredAt = Instant.now();
     }
 
     @Override
-    public Instant occurredAt() {
+    public Instant getOccurredAt() {
         return occurredAt;
     }
 }

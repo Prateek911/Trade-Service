@@ -150,6 +150,21 @@
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer -->
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>8.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/org.apache.avro/avro -->
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>1.12.1</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -162,6 +177,19 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<name>Confluent Maven Repository</name>
+			<url>https://packages.confluent.io/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
@@ -190,6 +218,46 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>1.12.1</version>
+				<executions>
+					<execution>
+						<id>generate-avro-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/avro</sourceDirectory>
+							<outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Add generated avro sources to compile source roots so MapStruct and the compiler can see them -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>add-avro-generated-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/avro</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

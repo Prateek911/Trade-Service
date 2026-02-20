@@ -93,3 +93,15 @@ logging:
     org.hibernate: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
+
+Kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+  schema-registry-url: ${SCHEMA_REGISTRY_URL}
+  topics:
+    trades-executed: trade.executed
+    trades-allocated: trade.allocated
+
+service:
+  query:
+    page: 0
+    size: 25
