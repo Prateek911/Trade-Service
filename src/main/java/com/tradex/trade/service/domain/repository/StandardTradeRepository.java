@@ -2,7 +2,9 @@ package com.tradex.trade.service.domain.repository;
 
 import com.tradex.trade.service.domain.common.repository.IRepository;
 import com.tradex.trade.service.infrastructure.persistence.trade.StandardTradeEntity;
+import com.tradex.trade.service.application.dto.StandardTradeFilterDTO;
 import com.tradex.trade.service.domain.trade.StandardTrade;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -12,4 +14,5 @@ public interface StandardTradeRepository extends IRepository<StandardTrade, Long
     StandardTrade save(StandardTradeEntity standardTrade);
     Boolean existsByTradeExecutionId(String tradeExecutionId);
     List<StandardTradeEntity> lockPendingTrades(Pageable pageable);
+    Page<StandardTrade> search(StandardTradeFilterDTO filter);
 }
