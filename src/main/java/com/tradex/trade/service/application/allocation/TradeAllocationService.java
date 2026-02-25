@@ -1,5 +1,7 @@
 package com.tradex.trade.service.application.allocation;
 
+import com.tradex.trade.service.application.dto.TradeAllocationDTO;
+import com.tradex.trade.service.application.dto.TradeAllocationFilterDTO;
 import com.tradex.trade.service.domain.allocation.*;
 import com.tradex.trade.service.application.outbox.OutboxService;
 import com.tradex.trade.service.domain.allocation.rule.AllocationRuleRegistry;
@@ -7,6 +9,11 @@ import com.tradex.trade.service.domain.allocation.rule.IAllocationRule;
 import com.tradex.trade.service.domain.common.enums.FailureCategory;
 import com.tradex.trade.service.domain.allocation.exception.RetryAllocationException;
 import com.tradex.trade.service.domain.allocation.exception.TerminalAllocationException;
+import com.tradex.trade.service.infrastructure.mapper.TradeAllocationDTOMapper;
+import com.tradex.trade.service.infrastructure.mapper.TradeAllocationMapper;
+import com.tradex.trade.service.infrastructure.pagination.PageableBuilder;
+import com.tradex.trade.service.infrastructure.persistence.allocation.AllocationSpecification;
+import com.tradex.trade.service.infrastructure.persistence.allocation.TradeAllocationEntity;
 import com.tradex.trade.service.infrastructure.persistence.allocation.TradeAllocationFailureEntity;
 import com.tradex.trade.service.domain.organization.Organization;
 import com.tradex.trade.service.domain.trade.StandardTrade;
@@ -15,6 +22,9 @@ import com.tradex.trade.service.infrastructure.mapper.AllocationDomainMapper;
 import com.tradex.trade.service.infrastructure.mapper.AllocationEntityMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +46,7 @@ public class TradeAllocationService {
 
     private final AllocationEntityMapper entityMapper;
     private final AllocationDomainMapper domainMapper;
+    private final TradeAllocationDTOMapper dtoMapper;
 
     private final TradeRetryRepository retryRepository;
     private final TradeFailureRepository failureRepository;
@@ -110,6 +121,12 @@ public class TradeAllocationService {
     private void persistAllocation(TradeAllocationState allocation) {
         tradeAllocationRepository.save(entityMapper.toEntity(allocation));
     }
+
+    public Page<TradeAllocationDTO> search(TradeAllocationFilterDTO dto){
+
+        return tradeAllocationRepository.findAll(dto).map(dtoMapper::toDTO);
+
+    };
 
 
 }

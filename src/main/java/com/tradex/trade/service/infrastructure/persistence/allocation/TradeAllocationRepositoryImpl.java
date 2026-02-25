@@ -1,15 +1,22 @@
 package com.tradex.trade.service.infrastructure.persistence.allocation;
 
+import com.tradex.trade.service.application.dto.TradeAllocationFilterDTO;
 import com.tradex.trade.service.domain.view.AllocationView;
 import com.tradex.trade.service.domain.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.allocation.TradeAllocation;
 import com.tradex.trade.service.domain.allocation.TradeAllocationRepository;
 import com.tradex.trade.service.infrastructure.mapper.TradeAllocationMapper;
+import com.tradex.trade.service.infrastructure.pagination.PageableBuilder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 @RequiredArgsConstructor
 public class TradeAllocationRepositoryImpl implements TradeAllocationRepository {
 
@@ -47,6 +54,13 @@ public class TradeAllocationRepositoryImpl implements TradeAllocationRepository 
     @Override
     public Optional<TradeAllocationEntity> findByTradeExecutionId(String tradeExecutionId) {
         return repository.findByTradeExecutionId(tradeExecutionId);
+    }
+
+    @Override
+    public Page<TradeAllocationEntity> findAll(TradeAllocationFilterDTO dto) {
+        Specification<TradeAllocationEntity> spec = AllocationSpecification.filter(dto);
+        Pageable pageable = PageableBuilder.tradeAllocationBuilder(dto);
+        return repository.findAll(spec, pageable);
     }
 
 }
