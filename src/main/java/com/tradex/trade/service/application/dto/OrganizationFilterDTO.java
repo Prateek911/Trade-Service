@@ -1,5 +1,6 @@
-package com.tradex.trade.service.infrastructure.persistence.dto;
+package com.tradex.trade.service.application.dto;
 
+import com.tradex.trade.service.infrastructure.persistence.dto.FilterDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrganizationFilterDTO extends FilterDTO{
+public class OrganizationFilterDTO extends FilterDTO {
 
     private String sourceId;
     private String sourceName;

@@ -1,6 +1,6 @@
 package com.tradex.trade.service.infrastructure.persistence.organization;
 
-import com.tradex.trade.service.infrastructure.persistence.dto.OrganizationFilterDTO;
+import com.tradex.trade.service.application.dto.OrganizationFilterDTO;
 import com.tradex.trade.service.infrastructure.persistence.filter.FilterableRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
