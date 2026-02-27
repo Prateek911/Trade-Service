@@ -7,11 +7,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +25,9 @@ public class TradeAllocationController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "allocations retrieved successfully"),
     })
-    @GetMapping("?{filter*}")
-    public ResponseEntity<Page<TradeAllocationDTO>> findAll(@RequestParam("filter") @NotNull TradeAllocationFilterDTO filter) {
-           return ResponseEntity.status(HttpStatus.FOUND).body(service.search(filter));
+    @GetMapping
+    public ResponseEntity<Page<TradeAllocationDTO>> findAll(@Valid TradeAllocationFilterDTO filter) {
+        return ResponseEntity.ok(service.search(filter));
     }
 
 

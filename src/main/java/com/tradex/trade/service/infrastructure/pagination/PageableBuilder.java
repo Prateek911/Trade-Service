@@ -13,31 +13,46 @@ import java.util.List;
 @NoArgsConstructor
 public final class PageableBuilder {
 
-    public static Pageable tradeAllocationBuilder(TradeAllocationFilterDTO dto) {
+    public static Pageable tradeAllocationBuilder(TradeAllocationFilterDTO dto, int maxPageSize) {
 
-        int page = dto.getPage() != null ? dto.getPage() : 0;
-        int size = dto.getSize() != null ? dto.getSize() : 20;
+        int pageNumber = 0;
+        int pageSize = maxPageSize;
 
         List<Sort.Order> orders = new ArrayList<>();
 
-        if (Boolean.TRUE.equals(dto.getIsMultipleSort())) {
+        if (dto != null) {
+            Integer size = dto.getSize();
+            if (size != null && size > 0) {
+                pageSize = Math.min(size, maxPageSize);
+            }
 
-            addOrder(orders, "id", dto.getOrderId());
-            addOrder(orders, "ruleCode", dto.getOrderRuleCode());
-            addOrder(orders, "tradeExecutionId", dto.getOrderTradeExecutionId());
-            addOrder(orders, "status", dto.getOrderStatus());
+            Integer page = dto.getPage();
+            if (page != null && page > 0) {
+                pageNumber = page - 1;
+            }
 
-        } else if (dto.getSortBy() != null) {
+            if (Boolean.TRUE.equals(dto.getIsMultipleSort())) {
 
-            orders.add(new Sort.Order(
-                    dto.getOrder().asc() ? Sort.Direction.ASC : Sort.Direction.DESC,
-                    dto.getSortBy()
-            ));
+                addOrder(orders, "id", dto.getOrderId());
+                addOrder(orders, "ruleCode", dto.getOrderRuleCode());
+                addOrder(orders, "tradeExecutionId", dto.getOrderTradeExecutionId());
+                addOrder(orders, "status", dto.getOrderStatus());
+
+            } else {
+                String sortBy = normalizeSortBy(dto.getSortBy());
+                if (sortBy != null) {
+                    FilterDTO.Order order = dto.getOrder();
+                    Sort.Direction direction = (order != null && !order.asc())
+                            ? Sort.Direction.DESC
+                            : Sort.Direction.ASC;
+                    orders.add(new Sort.Order(direction, sortBy));
+                }
+            }
         }
 
         Sort sort = orders.isEmpty() ? Sort.unsorted() : Sort.by(orders);
 
-        return PageRequest.of(page, size, sort);
+        return PageRequest.of(pageNumber, pageSize, sort);
     }
 
     private static void addOrder(List<Sort.Order> orders,
@@ -49,5 +64,25 @@ public final class PageableBuilder {
                     field
             ));
         }
+    }
+
+    private static String normalizeSortBy(String sortBy) {
+        if (!hasText(sortBy)) {
+            return null;
+        }
+
+        return switch (sortBy.trim()) {
+            case "id" -> "id";
+            case "tradeExecutionId" -> "tradeExecutionId";
+            case "ruleCode" -> "ruleCode";
+            case "status" -> "status";
+            case "createdAt" -> "createdAt";
+            case "updatedAt" -> "updatedAt";
+            default -> null;
+        };
+    }
+
+    private static boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }

@@ -15,10 +15,20 @@ public final class AllocationSpecification {
 
         return (root,query,cb)->{
 
+            if (dto == null) {
+                return cb.conjunction();
+            }
+
             List<Predicate> predicates = new ArrayList<>();
 
             if (dto.getId() != null) {
                 predicates.add(cb.equal(root.get("id"), dto.getId()));
+            }
+
+            if (hasText(dto.getTradeExecutionId())) {
+                predicates.add(cb.equal(
+                        cb.lower(root.get("tradeExecutionId")),
+                        dto.getTradeExecutionId().toLowerCase()));
             }
 
             if (hasText(dto.getRuleCode())) {
@@ -27,7 +37,7 @@ public final class AllocationSpecification {
                         "%" + dto.getRuleCode().toLowerCase() + "%"));
             }
 
-            if (hasText(String.valueOf(dto.getStatus()))) {
+            if (dto.getStatus() != null) {
                 predicates.add(cb.equal(
                         root.get("status"),
                         dto.getStatus()

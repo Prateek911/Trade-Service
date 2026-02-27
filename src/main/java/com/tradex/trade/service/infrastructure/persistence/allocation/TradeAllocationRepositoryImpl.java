@@ -7,21 +7,31 @@ import com.tradex.trade.service.domain.allocation.TradeAllocation;
 import com.tradex.trade.service.domain.allocation.TradeAllocationRepository;
 import com.tradex.trade.service.infrastructure.mapper.TradeAllocationMapper;
 import com.tradex.trade.service.infrastructure.pagination.PageableBuilder;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
 public class TradeAllocationRepositoryImpl implements TradeAllocationRepository {
 
     private final JpaTradeAllocationRepository repository;
     private final TradeAllocationMapper mapper;
+    private final int maxPageSize;
+
+    public TradeAllocationRepositoryImpl(
+            JpaTradeAllocationRepository repository,
+            TradeAllocationMapper mapper,
+            @Value("${service.query.size:100}") int maxPageSize
+    ) {
+        this.repository = repository;
+        this.mapper = mapper;
+        this.maxPageSize = maxPageSize;
+    }
 
     @Override
     public TradeAllocation findById(Long id) {
@@ -59,7 +69,7 @@ public class TradeAllocationRepositoryImpl implements TradeAllocationRepository 
     @Override
     public Page<TradeAllocationEntity> findAll(TradeAllocationFilterDTO dto) {
         Specification<TradeAllocationEntity> spec = AllocationSpecification.filter(dto);
-        Pageable pageable = PageableBuilder.tradeAllocationBuilder(dto);
+        Pageable pageable = PageableBuilder.tradeAllocationBuilder(dto, maxPageSize);
         return repository.findAll(spec, pageable);
     }
 
