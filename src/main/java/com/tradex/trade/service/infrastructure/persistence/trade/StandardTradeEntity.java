@@ -56,16 +56,19 @@ public class StandardTradeEntity extends Persistable {
     @Column(name = "trade_timestamp", nullable = false)
     private Instant tradeTimestamp;
 
+    @Builder.Default
     @Column(name = "allocation_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Status status=Status.RECEIVED;
+    private Status status = Status.RECEIVED;
 
+    @Builder.Default
     @Column(name = "ingested_at", nullable = false)
     private Instant ingestedAt = Instant.now();
 
     @Column(name="allocation_attempted_at")
     private Instant allocationAttemptedAt;
 
+    @Builder.Default
     @Column(name="allocation_attempts")
     private Integer allocationAttempts = 0;
 
