@@ -1,4 +1,4 @@
-package com.tradex.trade.service.application.interfaces.graphql;
+package com.tradex.trade.service.application.interfaces;
 
 import com.tradex.trade.service.domain.view.AllocationView;
 import com.tradex.trade.service.domain.allocation.AllocationLeg;

@@ -1,0 +1,13 @@
+.git
+.github
+.idea
+.mvn
+target
+**/target
+*.iml
+*.log
+.env
+.env.*
+README.md
+HELP.md
+docker-compose.yml

@@ -12,7 +12,7 @@ import java.util.List;
 public interface StandardTradeRepository extends IRepository<StandardTrade, Long> {
     StandardTrade findByTradeExecutionId(String tradeExecutionId);
     StandardTrade save(StandardTradeEntity standardTrade);
-    Boolean existsByTradeExecutionId(String tradeExecutionId);
+    boolean existsByTradeExecutionId(String tradeExecutionId);
     List<StandardTradeEntity> lockPendingTrades(Pageable pageable);
     Page<StandardTrade> search(StandardTradeFilterDTO filter);
 }

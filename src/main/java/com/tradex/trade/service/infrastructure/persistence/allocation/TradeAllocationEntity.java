@@ -46,6 +46,7 @@ public class TradeAllocationEntity extends Persistable {
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
+    @Builder.Default
     private List<AllocationLegEntity> legs = new ArrayList<>();
 
     public void replaceLegs(List<AllocationLegEntity> newLegs) {

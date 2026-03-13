@@ -1,18 +1,16 @@
-package com.tradex.trade.service.infrastructure.persistence.dto;
+package com.tradex.trade.service.application.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-@Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class EntityDTO {
     private Long id;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

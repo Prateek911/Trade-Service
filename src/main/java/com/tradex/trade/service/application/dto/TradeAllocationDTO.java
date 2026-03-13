@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TradeAllocationDTO extends EntityDTO {
+@SuperBuilder
+public class TradeAllocationDTO extends ClientDTO {
 
     private String tradeExecutionId;
     private Status status;

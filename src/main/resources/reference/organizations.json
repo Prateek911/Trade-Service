@@ -1,0 +1,398 @@
+[
+  {
+    "sourceId": "ORG-0001",
+    "sourceName": "BLOOMBERG",
+    "exchangeId": "XNYS-NCM",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "US" },
+      { "kycStatus": "VERIFIED", "countryCode": "CA" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+12125550101", "label": "ops" }
+    ],
+    "emailAddresses": [
+      { "email": "operations@northbridgecm.com", "type": "operations" }
+    ],
+    "regNumber": "US-DEL-10458231",
+    "shortName": "Northbridge Capital",
+    "longName": "Northbridge Capital Markets LLC"
+  },
+  {
+    "sourceId": "ORG-0002",
+    "sourceName": "REFINITIV",
+    "exchangeId": "XTSX-HVS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "CA" },
+      { "kycStatus": "VERIFIED", "countryCode": "US" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+14165550112", "label": "dealing" }
+    ],
+    "emailAddresses": [
+      { "email": "desk@harborviewsecurities.ca", "type": "dealing" }
+    ],
+    "regNumber": "CA-ON-7784120",
+    "shortName": "HarborView",
+    "longName": "HarborView Securities Inc."
+  },
+  {
+    "sourceId": "ORG-0003",
+    "sourceName": "FIDESSA",
+    "exchangeId": "XLON-MGB",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "GB" },
+      { "kycStatus": "VERIFIED", "countryCode": "IE" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+442079460301", "label": "trading" }
+    ],
+    "emailAddresses": [
+      { "email": "trading@meridianglobal.co.uk", "type": "trading" }
+    ],
+    "regNumber": "GB-CR-09277451",
+    "shortName": "Meridian Global",
+    "longName": "Meridian Global Brokerage Ltd"
+  },
+  {
+    "sourceId": "ORG-0004",
+    "sourceName": "MUREX",
+    "exchangeId": "XETR-RVT",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "DE" },
+      { "kycStatus": "VERIFIED", "countryCode": "NL" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+496921155402", "label": "execution" }
+    ],
+    "emailAddresses": [
+      { "email": "execution@rheinvalley.de", "type": "execution" }
+    ],
+    "regNumber": "DE-HRB-552491",
+    "shortName": "Rhein Valley",
+    "longName": "Rhein Valley Trading GmbH"
+  },
+  {
+    "sourceId": "ORG-0005",
+    "sourceName": "CALYPSO",
+    "exchangeId": "XPAR-SHS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "FR" },
+      { "kycStatus": "VERIFIED", "countryCode": "BE" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+33186300215", "label": "market" }
+    ],
+    "emailAddresses": [
+      { "email": "market@seinehorizon.fr", "type": "market" }
+    ],
+    "regNumber": "FR-RCS-809552114",
+    "shortName": "Seine Horizon",
+    "longName": "Seine Horizon Securities SAS"
+  },
+  {
+    "sourceId": "ORG-0006",
+    "sourceName": "BLOOMBERG",
+    "exchangeId": "XSWX-APM",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "CH" },
+      { "kycStatus": "VERIFIED", "countryCode": "DE" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+41445500121", "label": "ops" }
+    ],
+    "emailAddresses": [
+      { "email": "ops@alpineprimemarkets.ch", "type": "operations" }
+    ],
+    "regNumber": "CH-CHE-413287991",
+    "shortName": "Alpine Prime",
+    "longName": "Alpine Prime Markets AG"
+  },
+  {
+    "sourceId": "ORG-0007",
+    "sourceName": "REFINITIV",
+    "exchangeId": "XSTO-NWC",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "SE" },
+      { "kycStatus": "VERIFIED", "countryCode": "NO" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+46855100407", "label": "dealing" }
+    ],
+    "emailAddresses": [
+      { "email": "dealing@nordwavecapital.se", "type": "dealing" }
+    ],
+    "regNumber": "SE-5569123345",
+    "shortName": "NordWave",
+    "longName": "NordWave Capital AB"
+  },
+  {
+    "sourceId": "ORG-0008",
+    "sourceName": "FIDESSA",
+    "exchangeId": "XMAD-IDV",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "ES" },
+      { "kycStatus": "VERIFIED", "countryCode": "PT" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+34912345088", "label": "execution" }
+    ],
+    "emailAddresses": [
+      { "email": "execution@iberiandelta.es", "type": "execution" }
+    ],
+    "regNumber": "ES-B87364521",
+    "shortName": "Iberian Delta",
+    "longName": "Iberian Delta Valores S.A."
+  },
+  {
+    "sourceId": "ORG-0009",
+    "sourceName": "MUREX",
+    "exchangeId": "XMIL-ALS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "IT" },
+      { "kycStatus": "VERIFIED", "countryCode": "SI" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+390287009912", "label": "front-office" }
+    ],
+    "emailAddresses": [
+      { "email": "frontoffice@adriaticlink.it", "type": "front-office" }
+    ],
+    "regNumber": "IT-MI-2094871",
+    "shortName": "Adriatic Link",
+    "longName": "Adriatic Link SIM S.p.A."
+  },
+  {
+    "sourceId": "ORG-0010",
+    "sourceName": "CALYPSO",
+    "exchangeId": "DFM-GCB",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "AE" },
+      { "kycStatus": "VERIFIED", "countryCode": "SA" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+97145570031", "label": "ops" }
+    ],
+    "emailAddresses": [
+      { "email": "ops@gulfcrescent.ae", "type": "operations" }
+    ],
+    "regNumber": "AE-DIFC-CL-190224",
+    "shortName": "Gulf Crescent",
+    "longName": "Gulf Crescent Brokerage LLC"
+  },
+  {
+    "sourceId": "ORG-0011",
+    "sourceName": "BLOOMBERG",
+    "exchangeId": "EGX-NMS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "EG" },
+      { "kycStatus": "VERIFIED", "countryCode": "AE" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+20221150061", "label": "dealing" }
+    ],
+    "emailAddresses": [
+      { "email": "dealing@nilemeridian.eg", "type": "dealing" }
+    ],
+    "regNumber": "EG-CAI-441233",
+    "shortName": "Nile Meridian",
+    "longName": "Nile Meridian Securities SAE"
+  },
+  {
+    "sourceId": "ORG-0012",
+    "sourceName": "REFINITIV",
+    "exchangeId": "JSE-SGC",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "ZA" },
+      { "kycStatus": "VERIFIED", "countryCode": "BW" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+27114050071", "label": "trading" }
+    ],
+    "emailAddresses": [
+      { "email": "trading@savannahgate.co.za", "type": "trading" }
+    ],
+    "regNumber": "ZA-2014-092881-07",
+    "shortName": "Savannah Gate",
+    "longName": "Savannah Gate Capital Pty Ltd"
+  },
+  {
+    "sourceId": "ORG-0013",
+    "sourceName": "FIDESSA",
+    "exchangeId": "NSE-MNM",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "IN" },
+      { "kycStatus": "VERIFIED", "countryCode": "SG" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+912249650081", "label": "market" }
+    ],
+    "emailAddresses": [
+      { "email": "market@mumbainexus.in", "type": "market" }
+    ],
+    "regNumber": "IN-U67120MH2016PTC287410",
+    "shortName": "Mumbai Nexus",
+    "longName": "Mumbai Nexus Markets Private Limited"
+  },
+  {
+    "sourceId": "ORG-0014",
+    "sourceName": "MUREX",
+    "exchangeId": "BSE-BTS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "IN" },
+      { "kycStatus": "VERIFIED", "countryCode": "BD" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+913340700092", "label": "execution" }
+    ],
+    "emailAddresses": [
+      { "email": "execution@bengaltide.in", "type": "execution" }
+    ],
+    "regNumber": "IN-U65990WB2018PTC225911",
+    "shortName": "Bengal Tide",
+    "longName": "Bengal Tide Securities Private Limited"
+  },
+  {
+    "sourceId": "ORG-0015",
+    "sourceName": "CALYPSO",
+    "exchangeId": "SGX-PCB",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "SG" },
+      { "kycStatus": "VERIFIED", "countryCode": "MY" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+6565500391", "label": "dealing" }
+    ],
+    "emailAddresses": [
+      { "email": "dealing@pacificcrest.sg", "type": "dealing" }
+    ],
+    "regNumber": "SG-201915728K",
+    "shortName": "Pacific Crest",
+    "longName": "Pacific Crest Brokerage Pte. Ltd."
+  },
+  {
+    "sourceId": "ORG-0016",
+    "sourceName": "BLOOMBERG",
+    "exchangeId": "HKEX-VHC",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "HK" },
+      { "kycStatus": "VERIFIED", "countryCode": "CN" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+85235500991", "label": "institutional" }
+    ],
+    "emailAddresses": [
+      { "email": "institutional@victoriaharbour.hk", "type": "institutional" }
+    ],
+    "regNumber": "HK-2487715",
+    "shortName": "Victoria Harbour",
+    "longName": "Victoria Harbour Capital Limited"
+  },
+  {
+    "sourceId": "ORG-0017",
+    "sourceName": "REFINITIV",
+    "exchangeId": "TSE-SBS",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "JP" },
+      { "kycStatus": "VERIFIED", "countryCode": "KR" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+81355210082", "label": "execution" }
+    ],
+    "emailAddresses": [
+      { "email": "execution@sakurabridge.jp", "type": "execution" }
+    ],
+    "regNumber": "JP-13-010245771",
+    "shortName": "Sakura Bridge",
+    "longName": "Sakura Bridge Securities Co., Ltd."
+  },
+  {
+    "sourceId": "ORG-0018",
+    "sourceName": "FIDESSA",
+    "exchangeId": "ASX-SCM",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "AU" },
+      { "kycStatus": "VERIFIED", "countryCode": "NZ" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+61284070095", "label": "trading" }
+    ],
+    "emailAddresses": [
+      { "email": "trading@southerncrossmarkets.au", "type": "trading" }
+    ],
+    "regNumber": "AU-ACN-612904773",
+    "shortName": "Southern Cross",
+    "longName": "Southern Cross Markets Pty Ltd"
+  },
+  {
+    "sourceId": "ORG-0019",
+    "sourceName": "MUREX",
+    "exchangeId": "NZX-KHI",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "NZ" },
+      { "kycStatus": "VERIFIED", "countryCode": "AU" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+6493600811", "label": "ops" }
+    ],
+    "emailAddresses": [
+      { "email": "ops@kiwiharbor.co.nz", "type": "operations" }
+    ],
+    "regNumber": "NZ-CN-7119032",
+    "shortName": "Kiwi Harbor",
+    "longName": "Kiwi Harbor Investments Limited"
+  },
+  {
+    "sourceId": "ORG-0020",
+    "sourceName": "CALYPSO",
+    "exchangeId": "B3-ASV",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "BR" },
+      { "kycStatus": "VERIFIED", "countryCode": "CL" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+551132500712", "label": "market" }
+    ],
+    "emailAddresses": [
+      { "email": "market@andeansummit.com.br", "type": "market" }
+    ],
+    "regNumber": "BR-CNPJ-34882110000167",
+    "shortName": "Andean Summit",
+    "longName": "Andean Summit Valores S.A."
+  },
+  {
+    "sourceId": "ORG-0021",
+    "sourceName": "BLOOMBERG",
+    "exchangeId": "BMV-ARB",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "MX" },
+      { "kycStatus": "VERIFIED", "countryCode": "US" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+525553006120", "label": "dealing" }
+    ],
+    "emailAddresses": [
+      { "email": "dealing@aztecriver.mx", "type": "dealing" }
+    ],
+    "regNumber": "MX-RFC-ARB190711P32",
+    "shortName": "Aztec River",
+    "longName": "Aztec River Brokerage S.A. de C.V."
+  },
+  {
+    "sourceId": "ORG-0022",
+    "sourceName": "REFINITIV",
+    "exchangeId": "TSX-MLI",
+    "legalEntityKyc": [
+      { "kycStatus": "VERIFIED", "countryCode": "CA" },
+      { "kycStatus": "VERIFIED", "countryCode": "GB" }
+    ],
+    "phoneNumbers": [
+      { "phoneNumber": "+16045590155", "label": "institutional" }
+    ],
+    "emailAddresses": [
+      { "email": "institutional@mapleleafim.ca", "type": "institutional" }
+    ],
+    "regNumber": "CA-BC-9931842",
+    "shortName": "Maple Leaf IM",
+    "longName": "Maple Leaf Institutional Markets Inc."
+  }
+]

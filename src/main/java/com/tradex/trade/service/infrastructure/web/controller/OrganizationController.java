@@ -1,4 +1,4 @@
-package com.tradex.trade.service.infrastructure.web;
+package com.tradex.trade.service.infrastructure.web.controller;
 
 import com.tradex.trade.service.application.dto.OrganizationCreateDTO;
 import com.tradex.trade.service.application.dto.OrganizationDTO;
@@ -14,8 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/organizations")
@@ -33,5 +34,17 @@ public class OrganizationController {
     @PostMapping
     public ResponseEntity<OrganizationDTO> createOrganization(@Valid @RequestBody OrganizationCreateDTO createDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(organizationService.createOrganization(createDTO));
+    }
+
+    @Operation(summary = "Create organizations in bulk")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Organizations created"),
+            @ApiResponse(responseCode = "400", description = "Validation failed")
+    })
+    @PostMapping("/bulk")
+    public ResponseEntity<List<OrganizationDTO>> createOrganizations(
+            @Valid @RequestBody List<@Valid OrganizationCreateDTO> createDTOs
+    ) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(organizationService.createOrganizations(createDTOs));
     }
 }

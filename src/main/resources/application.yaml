@@ -22,38 +22,17 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}
 
     hikari:
-      maximum-pool-size: 10
-      minimum-idle: 2
-      connection-timeout: 30000
+      maximum-pool-size: ${SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE:10}
+      minimum-idle: ${SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE:2}
+      connection-timeout: ${SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT:30000}
 
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
     properties:
       hibernate:
         format_sql: true
-
-  # =========================
-  # KAFKA
-  # =========================
-  kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-    listener:
-      auto-startup: false
-    consumer:
-      group-id: trade-service
-      auto-offset-reset: earliest
-      enable-auto-commit: false
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
-    producer:
-      acks: all
-      retries: 5
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
   # =========================
   # REDIS
@@ -94,14 +73,27 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
 
-Kafka:
+kafka:
   bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-  schema-registry-url: ${SCHEMA_REGISTRY_URL}
+  schema-registry-url: ${KAFKA_SCHEMA_REGISTRY_URL:http://schema-registry:8081}
+  consumer:
+    group-id: ${KAFKA_CONSUMER_GROUP_ID:trade-allocation-service}
   topics:
-    trades-executed: trade.executed
-    trades-allocated: trade.allocated
+    trades-executed: ${KAFKA_TOPIC_TRADES_EXECUTED:trades.executed}
+    trades-allocated: ${KAFKA_TOPIC_TRADES_ALLOCATED:trades.allocated}
+    trades-allocation-failed: ${KAFKA_TOPIC_TRADES_ALLOCATION_FAILED:trades.allocation.failed}
+    trades-executed-dlq: ${KAFKA_TOPIC_TRADES_EXECUTED_DLQ:trades.executed.dlq}
+    trades-executed-dlq-malformed: ${KAFKA_TOPIC_TRADES_EXECUTED_DLQ_MALFORMED:trades.executed.dlq.malformed}
+
+outbox:
+  poll:
+    interval-ms: ${OUTBOX_POLL_INTERVAL_MS:2000}
 
 service:
   query:
     page: 0
     size: 25
+
+reference:
+  organizations:
+    path: ${REFERENCE_ORGANIZATIONS_PATH:classpath:reference/organizations.json}

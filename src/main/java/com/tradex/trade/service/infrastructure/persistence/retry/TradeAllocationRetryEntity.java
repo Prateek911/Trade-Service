@@ -27,6 +27,7 @@ public class TradeAllocationRetryEntity extends Persistable {
     private String tradeExecutionId;
 
     @Column(name = "retry_count", nullable = false)
+    @Builder.Default
     private int retryCount=0;
 
     @Column(name = "max_retries", nullable = false)

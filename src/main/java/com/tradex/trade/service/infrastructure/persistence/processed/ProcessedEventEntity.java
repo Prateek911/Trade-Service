@@ -29,6 +29,7 @@ public class ProcessedEventEntity extends Persistable {
     private String eventId;
 
     @Column(name = "processed_at", nullable = false)
+    @Builder.Default
     private Instant processedAt = Instant.now();
 
 }

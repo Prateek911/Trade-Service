@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",uses = DateMapper.class)
+@Mapper(componentModel = "spring",uses = {EntityReferenceDtoMapper.class,DateMapper.class})
 public interface TradeFailureMapper {
 
     TradeAllocationFailure toModel(TradeAllocationFailureEntity model);
