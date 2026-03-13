@@ -36,4 +36,12 @@ public class JpaOrganizationRepository extends FilterableRepository<Organization
                 .setParameter("sourceName", sourceName)
                 .getResultList();
     }
+
+    public boolean existsByRegNumber(String regNumber) {
+        var em = getEntityManager();
+        Long count = em.createQuery("select count(o.id) from OrganizationEntity o where o.regNumber = :regNumber", Long.class)
+                .setParameter("regNumber", regNumber)
+                .getSingleResult();
+        return count != null && count > 0;
+    }
 }

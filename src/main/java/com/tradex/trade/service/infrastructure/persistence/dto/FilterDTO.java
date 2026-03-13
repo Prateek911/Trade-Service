@@ -2,10 +2,7 @@ package com.tradex.trade.service.infrastructure.persistence.dto;
 
 import com.tradex.trade.service.application.dto.ServerDTO;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Getter
@@ -21,8 +18,10 @@ public abstract class FilterDTO extends ServerDTO {
     @Positive
     private Integer size;
 
+    @Builder.Default
     private Order order= Order.ASC;
 
+    @Builder.Default
     private Boolean isMultipleSort = false;
 
     private String sortBy;

@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailAddressDTO extends DTO{
+public class EmailAddressDTO extends ClientDTO{
 
     private String email;
 

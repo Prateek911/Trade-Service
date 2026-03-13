@@ -6,12 +6,9 @@ import com.tradex.trade.service.domain.trade.TradeExecutedValidator;
 import com.tradex.trade.service.infrastructure.messaging.kafka.TradeExecutedEvent;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.common.protocol.types.SchemaException;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.DeserializationException;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +19,12 @@ public class TradeExecutionConsumer {
     private final TradeConsumerService consumerService;
     private final TradeExecutedValidator tradeExecutedValidator;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+
+    @Value("${kafka.topics.trades-executed-dlq}")
+    private String tradesExecutedDlq;
+
+    @Value("${kafka.topics.trades-executed-dlq-malformed}")
+    private String tradesExecutedDlqMalformed;
 
     @KafkaListener(
             topics = "${kafka.topics.trades-executed}",
@@ -37,9 +40,9 @@ public class TradeExecutionConsumer {
             consumerService.consume(envelope);
 
         }catch (DeserializationException | SchemaException schemaEx) {
-            kafkaTemplate.send("trades.executed.dlq", envelope);
+            kafkaTemplate.send(tradesExecutedDlq, envelope);
         } catch (MalformedTradeException ex){
-                kafkaTemplate.send("trades.executed.dlq.malformed", envelope);
+                kafkaTemplate.send(tradesExecutedDlqMalformed, envelope);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

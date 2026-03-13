@@ -24,7 +24,7 @@ uniqueConstraints = {
         columnNames = "trade_execution_id"
 )},
 indexes = {
-        @Index(name = "idx_standard_trade_trade_id", columnList = "trade_id"),
+        @Index(name = "idx_standard_trade_trade_execution_id", columnList = "trade_execution_id"),
         @Index(name = "idx_standard_trade_instrument", columnList = "instrument_id"),
         @Index(name = "idx_standard_trade_created_at", columnList = "created_at")
 })

@@ -1,4 +1,4 @@
-package com.tradex.trade.service.infrastructure.web;
+package com.tradex.trade.service.infrastructure.web.controller;
 
 import com.tradex.trade.service.application.allocation.TradeAllocationService;
 import com.tradex.trade.service.application.dto.TradeAllocationDTO;

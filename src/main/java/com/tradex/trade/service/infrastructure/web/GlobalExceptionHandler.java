@@ -2,6 +2,7 @@ package com.tradex.trade.service.infrastructure.web;
 
 import com.tradex.trade.service.shared.ApplicationException;
 import com.tradex.trade.service.shared.PersistanceFailureException;
+import com.tradex.trade.service.domain.exception.RecordAlreadyExistsException;
 import com.tradex.trade.service.domain.exception.RecordNotFoundException;
 import com.tradex.trade.service.domain.exception.ValidationException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,14 +46,14 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(RecordNotFoundException.class)
+    @ExceptionHandler(RecordAlreadyExistsException.class)
     public ResponseEntity<ProblemDetailsDTO> handleResourceAlreadyExists(
-            RecordNotFoundException ex,
+            RecordAlreadyExistsException ex,
             HttpServletRequest request) {
 
         return buildProblem(
                 ex,
-                HttpStatus.UNPROCESSABLE_CONTENT,
+                HttpStatus.CONFLICT,
                 request,
                 null
         );
@@ -60,7 +61,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PersistanceFailureException.class)
     public ResponseEntity<ProblemDetailsDTO> handlePersistanceFailure(
-            RecordNotFoundException ex,
+            PersistanceFailureException ex,
             HttpServletRequest request) {
 
         return buildProblem(

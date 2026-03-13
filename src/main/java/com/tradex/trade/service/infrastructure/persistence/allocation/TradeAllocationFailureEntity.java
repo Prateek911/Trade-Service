@@ -43,6 +43,7 @@ public class TradeAllocationFailureEntity extends Persistable {
     private boolean retryable;
 
     @Column(name = "failed_at", nullable = false, updatable = false)
+    @Builder.Default
     private Instant failedAt = Instant.now();
 
     public static TradeAllocationFailureEntity from(String tradeExecutionId, FailureCategory failureCategory,

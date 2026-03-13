@@ -18,7 +18,7 @@ services:
       - trade_service_data:/data
 
 volumes:
-      trade_service_data:
+  trade_service_data:
 
 networks:
   trade-platform:

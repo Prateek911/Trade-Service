@@ -11,5 +11,6 @@ public interface OrganizationRepository extends IRepository<Organization,Long> {
     List<Organization> findEligibleForAllocation(String sourceName);
 
     Organization save(Organization model);
+    boolean existsByRegNumber(String regNumber);
 
 }

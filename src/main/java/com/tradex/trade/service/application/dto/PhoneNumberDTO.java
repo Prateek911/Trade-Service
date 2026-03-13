@@ -1,10 +1,7 @@
 package com.tradex.trade.service.application.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Getter
@@ -12,7 +9,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PhoneNumberDTO extends DTO{
+@EqualsAndHashCode(callSuper = true)
+public class PhoneNumberDTO extends ClientDTO{
 
     private String phoneNumber;
 

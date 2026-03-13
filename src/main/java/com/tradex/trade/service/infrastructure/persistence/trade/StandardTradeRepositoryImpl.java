@@ -15,13 +15,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.StringUtils.hasText;
 
 @Repository
 public class StandardTradeRepositoryImpl implements StandardTradeRepository {
+
+    private static final Sort DEFAULT_SORT = Sort.by(
+            Sort.Order.desc("ingestedAt"),
+            Sort.Order.desc("id")
+    );
 
     private final JpaStandardTradeRepository repository;
     private final StandardTradeMapper mapper;
@@ -49,7 +53,7 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
     }
 
     @Override
-    public Boolean existsByTradeExecutionId(String tradeExecutionId) {
+    public boolean existsByTradeExecutionId(String tradeExecutionId) {
         return repository.existsByTradeExecutionId(tradeExecutionId);
     }
 
@@ -84,19 +88,19 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
         }
 
         if (hasText(filter.getTradeExecutionId())) {
-            builder.and(trade.tradeExecutionId.equalsIgnoreCase(filter.getTradeExecutionId()));
+            builder.and(trade.tradeExecutionId.equalsIgnoreCase(filter.getTradeExecutionId().trim()));
         }
         if (hasText(filter.getInstrumentId())) {
-            builder.and(trade.instrumentId.equalsIgnoreCase(filter.getInstrumentId()));
+            builder.and(trade.instrumentId.equalsIgnoreCase(filter.getInstrumentId().trim()));
         }
         if (filter.getSide() != null) {
             builder.and(trade.side.eq(filter.getSide()));
         }
         if (hasText(filter.getCurrency())) {
-            builder.and(trade.currency.equalsIgnoreCase(filter.getCurrency()));
+            builder.and(trade.currency.equalsIgnoreCase(filter.getCurrency().trim()));
         }
         if (hasText(filter.getSourceSystem())) {
-            builder.and(trade.sourceSystem.equalsIgnoreCase(filter.getSourceSystem()));
+            builder.and(trade.sourceSystem.equalsIgnoreCase(filter.getSourceSystem().trim()));
         }
         if (filter.getId() != null) {
             builder.and(trade.id.eq(filter.getId()));
@@ -126,26 +130,12 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
 
     private Sort buildSort(StandardTradeFilterDTO filter) {
         if (filter == null) {
-            return Sort.unsorted();
-        }
-
-        if (Boolean.TRUE.equals(filter.getIsMultipleSort())) {
-            List<Sort.Order> orders = new ArrayList<>();
-            addOrder(orders, filter.getOrderId(), "id");
-            addOrder(orders, filter.getOrderTradeExecutionId(), "tradeExecutionId");
-            addOrder(orders, filter.getOrderInstrumentId(), "instrumentId");
-            addOrder(orders, filter.getOrderSide(), "side");
-            addOrder(orders, filter.getOrderCurrency(), "currency");
-            addOrder(orders, filter.getOrderSourceSystem(), "sourceSystem");
-
-            if (!orders.isEmpty()) {
-                return Sort.by(orders);
-            }
+            return DEFAULT_SORT;
         }
 
         String sortBy = normalizeSortBy(filter.getSortBy());
         if (sortBy == null) {
-            return Sort.unsorted();
+            return DEFAULT_SORT;
         }
 
         FilterDTO.Order order = filter.getOrder();
@@ -154,14 +144,6 @@ public class StandardTradeRepositoryImpl implements StandardTradeRepository {
                 : Sort.Direction.ASC;
 
         return Sort.by(direction, sortBy);
-    }
-
-    private void addOrder(List<Sort.Order> orders, FilterDTO.Order order, String property) {
-        if (order == null) {
-            return;
-        }
-        Sort.Direction direction = order.asc() ? Sort.Direction.ASC : Sort.Direction.DESC;
-        orders.add(new Sort.Order(direction, property));
     }
 
     private String normalizeSortBy(String sortBy) {

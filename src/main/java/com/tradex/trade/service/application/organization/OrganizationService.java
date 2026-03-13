@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +29,15 @@ public class OrganizationService {
 
         return mapper.toDTO(result);
 
+    }
+
+    @Transactional
+    public List<OrganizationDTO> createOrganizations(List<OrganizationCreateDTO> createDTOs) {
+        return createDTOs.stream()
+                .map(mapper::toModel)
+                .map(repository::save)
+                .map(mapper::toDTO)
+                .toList();
     }
 
 }

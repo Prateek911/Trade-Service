@@ -11,8 +11,6 @@ import java.sql.Timestamp;
 public class Entity {
 
     private Long id;
-    private String createdBy;
-    private String updatedBy;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

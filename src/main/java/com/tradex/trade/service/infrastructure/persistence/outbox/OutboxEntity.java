@@ -3,10 +3,7 @@ package com.tradex.trade.service.infrastructure.persistence.outbox;
 import com.tradex.trade.service.application.outbox.OutboxStatus;
 import com.tradex.trade.service.infrastructure.persistence.Persistable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -46,6 +43,7 @@ public class OutboxEntity extends Persistable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
+    @Builder.Default
     private OutboxStatus status = OutboxStatus.NEW;
 
     @Column(name = "published_at")

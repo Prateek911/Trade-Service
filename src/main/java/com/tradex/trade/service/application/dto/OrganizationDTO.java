@@ -17,7 +17,7 @@ import java.util.Set;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrganizationDTO extends DTO {
+public class OrganizationDTO extends ClientDTO {
 
     private String sourceId;
 

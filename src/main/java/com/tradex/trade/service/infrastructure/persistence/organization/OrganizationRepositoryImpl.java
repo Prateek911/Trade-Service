@@ -48,4 +48,9 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
     public List<Organization> findEligibleForAllocation(String sourceName) {
         return mapper.toModels(repository.findEligibleForAllocation(sourceName));
     }
+
+    @Override
+    public boolean existsByRegNumber(String regNumber) {
+        return repository.existsByRegNumber(regNumber);
+    }
 }

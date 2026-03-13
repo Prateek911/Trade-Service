@@ -2,19 +2,15 @@ package com.tradex.trade.service.infrastructure.messaging.kafka.config;
 
 import com.tradex.trade.service.infrastructure.messaging.kafka.TradeExecutedEvent;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.core.*;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
-import org.springframework.kafka.transaction.KafkaTransactionManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,13 +24,16 @@ public class KafkaConsumerConfig {
     @Value("${kafka.schema-registry-url}")
     private String schemaRegistryUrl;
 
+    @Value("${kafka.consumer.group-id}")
+    private String consumerGroupId;
+
     @Bean
-    public ConsumerFactory<String, TradeExecutedEvent> TradeExecutedEventConsumerFactory() {
+    public ConsumerFactory<String, TradeExecutedEvent> tradeExecutedEventConsumerFactory() {
 
         Map<String, Object> props = new HashMap<>();
 
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "trade-allocation-service");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
 
@@ -48,9 +47,9 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
-    @Bean
+    @Bean(name = "tradeExecutedKafkaListenerContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<String, TradeExecutedEvent>
-    TradeExecutedEventKafkaListenerContainerFactory(
+    tradeExecutedKafkaListenerContainerFactory(
             ConsumerFactory<String, TradeExecutedEvent> consumerFactory
     ) {
 
